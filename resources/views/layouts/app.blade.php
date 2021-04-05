@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="logo.png" style="width: 220px; height: 75px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,28 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <!-- Inventory -->
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Inventory
+                          </a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">In</a>
+                            <a class="dropdown-item" href="#">Out</a>
+                            <a class="dropdown-item" href="#">Returns</a>
+                          </div>
+                        </li>
+                        <!-- Settings-->
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Settings
+                          </a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Users</a>
+                            <a class="dropdown-item" href="#">Suppliers</a>
+                            <a class="dropdown-item" href="#">SKUs</a>
+                          </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -14,7 +14,9 @@ class SuppliersController extends Controller
      */
     public function index()
     {
-        return view('suppliers.index');
+        $suppliers = Suppliers::latest()->paginate(5);
+        return view('suppliers.index',compact('suppliers'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

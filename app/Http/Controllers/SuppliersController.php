@@ -84,4 +84,15 @@ class SuppliersController extends Controller
     {
         //delete
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Suppliers  $suppliers
+     * @return \Illuminate\Http\Response
+     */
+    public function deactivate(Suppliers $suppliers)
+    {
+        //deactivate
+    }
 }

@@ -71,7 +71,7 @@ class SuppliersController extends Controller
      */
     public function update(Request $request, Suppliers $suppliers)
     {
-        //
+        //Update
     }
 
     /**

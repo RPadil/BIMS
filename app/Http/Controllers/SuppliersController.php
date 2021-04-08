@@ -82,6 +82,6 @@ class SuppliersController extends Controller
      */
     public function destroy(Suppliers $suppliers)
     {
-        //
+        //delete
     }
 }

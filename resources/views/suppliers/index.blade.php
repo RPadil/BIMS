@@ -1,15 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <a href="{{ route('suppliers.create')}}" class="btn btn-success float-right">Add</a>
+  <div class="card">
+  <div class="card-header">
+    <div>
+      <h3>Suppliers</h3>
+    </div>
+      <a href="{{ route('suppliers.create')}}" class="btn btn-success float-left">Add New Supplier</a>
+  </div>
+  <div class="card-body">
   <table class="table table-striped">
     <thead>
         <tr>
           <td>Supplier Code</td>
           <td>Supplier Name</td>
           <td>Location</td>
-          <td>Active/Inacive</td>
+          <td>Active/Inactive</td>
           <td colspan="2">Action</td>
         </tr>
     </thead>
@@ -19,10 +25,14 @@
             <td>{{$supplier->supp_code}}</td>
             <td>{{$supplier->supp_name}}</td>
             <td>{{$supplier->location}}</td>
-            <td>{{$supplier->is_active}}</td>
-            <td><a href="{{ route('supplier.edit',$supplier->id)}}" class="btn btn-primary">Edit</a></td>
+            @if ($supplier->is_active === 1)
+            <td>Active</td>
+            @else
+            <td>Inactive</td>
+            @endif
+            <td><a href="{{ route('suppliers.edit',$supplier->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
-                <form action="{{ route('supplier.destroy', $supplier->id)}}" method="post">
+                <form action="{{ route('suppliers.destroy', $supplier->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
@@ -30,8 +40,9 @@
             </td>
         </tr>
         @endforeach
-        {{ $infos->links() }}
+        {{ $suppliers->links() }}
     </tbody>
   </table>
-<div>
+</div>
+</div>
 @endsection

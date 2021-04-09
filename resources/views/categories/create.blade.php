@@ -17,23 +17,15 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('suppliers.store') }}">
+      <form method="post" action="{{ route('categories.store') }}">
           <div class="form-group">
               @csrf
-              <label for="supp_code">Supplier Code:</label>
+              <label for="supp_code">Category Code:</label>
               <input type="text" class="form-control" name="supp_code"/>
           </div>
           <div class="form-group">
-              <label for="supp_name">Supplier Name:</label>
+              <label for="supp_name">Category Name:</label>
               <input type="text" class="form-control" name="supp_name"/>
-          </div>
-          <div class="form-group">
-              <label for="loc">Location:</label>
-              <input type="text" class="form-control" name="loc"/>
-          </div>
-          <div class="form-group">
-              <label for="contact">Contact:</label>
-              <input type="text" class="form-control" name="contact"/>
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

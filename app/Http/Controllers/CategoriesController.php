@@ -124,6 +124,7 @@ class CategoriesController extends Controller
 
     public function activate($id)
     {
+        //activate
         $categories = Categories::find($id);
         $categories->is_active = 1;
         $categories->save();

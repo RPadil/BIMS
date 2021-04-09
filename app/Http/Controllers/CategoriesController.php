@@ -115,6 +115,7 @@ class CategoriesController extends Controller
     }
     public function deactivate($id)
     {
+        //deactivate
         $categories = Categories::find($id);
         $categories->is_active = 2;
         $categories->save();

@@ -26,7 +26,7 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create');
     }
 
     /**
@@ -37,7 +37,23 @@ class SuppliersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'supp_code'=>'required',
+        'supp_name'=> 'required',
+        'loc'=>'required',
+        'contact'=> 'required'
+      ]);
+
+      $suppliers = new Suppliers();
+      $suppliers->supp_code = $request->get('supp_code');
+      $suppliers->supp_name = $request->get('supp_name');
+      $suppliers->location = $request->get('loc');
+      $suppliers->contact = $request->get('contact');
+      $suppliers->is_active = 1;
+      $suppliers->created_at = Now();
+
+      $suppliers->save();
+      return redirect('/suppliers')->with('success', 'Supplier Successfully Added!');
     }
 
     /**
@@ -57,9 +73,10 @@ class SuppliersController extends Controller
      * @param  \App\Suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Suppliers $suppliers)
+    public function edit($id)
     {
-        //
+        $supplier = Suppliers::find($id);
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -69,9 +86,25 @@ class SuppliersController extends Controller
      * @param  \App\Suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Suppliers $suppliers)
+    public function update(Request $request, $id)
     {
-        //Update
+        $request->validate([
+        'supp_code'=>'required',
+        'supp_name'=> 'required',
+        'loc'=>'required',
+        'contact'=> 'required'
+      ]);
+
+      $suppliers = Suppliers::find($id);
+      $suppliers->supp_code = $request->get('supp_code');
+      $suppliers->supp_name = $request->get('supp_name');
+      $suppliers->location = $request->get('loc');
+      $suppliers->contact = $request->get('contact');
+      $suppliers->is_active = 1;
+      $suppliers->updated_at = Now();
+
+      $suppliers->save();
+      return redirect('/suppliers')->with('success', 'Supplier Successfully Updated!');
     }
 
     /**
@@ -80,9 +113,12 @@ class SuppliersController extends Controller
      * @param  \App\Suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Suppliers $suppliers)
+    public function destroy($id)
     {
-        //delete
+        $supplier = Suppliers::find($id);
+        $supplier->delete();
+
+        return redirect('/suppliers')->with('success', 'Supplier Successfully Deleted!');
     }
 
     /**
@@ -91,8 +127,19 @@ class SuppliersController extends Controller
      * @param  \App\Suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function deactivate(Suppliers $suppliers)
+    public function deactivate($id)
     {
-        //deactivate
+        $suppliers = Suppliers::find($id);
+        $suppliers->is_active = 2;
+        $suppliers->save();
+        return redirect('/suppliers')->with('success', 'Supplier Successfully Deactivated!');
+    }
+
+    public function activate($id)
+    {
+        $suppliers = Suppliers::find($id);
+        $suppliers->is_active = 1;
+        $suppliers->save();
+        return redirect('/suppliers')->with('success', 'Supplier Successfully Activated!');
     }
 }

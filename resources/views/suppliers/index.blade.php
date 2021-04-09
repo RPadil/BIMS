@@ -15,6 +15,7 @@
           <td>Supplier Code</td>
           <td>Supplier Name</td>
           <td>Location</td>
+          <td>Contact</td>
           <td>Active/Inactive</td>
           <td colspan="2">Action</td>
         </tr>
@@ -25,6 +26,7 @@
             <td>{{$supplier->supp_code}}</td>
             <td>{{$supplier->supp_name}}</td>
             <td>{{$supplier->location}}</td>
+            <td>{{$supplier->contact}}</td>
             @if ($supplier->is_active === 1)
             <td>Active</td>
             @else

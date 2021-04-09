@@ -14,7 +14,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        
+        $categories = Categories::latest()->paginate(5);
+        return view('categories.index',compact('categories'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'cat_code'=>'required',
+        'cat_name'=> 'required'
+      ]);
+
+      $categories = new Categories();
+      $categories->cat_code = $request->get('cat_code');
+      $categories->cat_name = $request->get('cat_name');
+      $categories->is_active = 1;
+      $categories->created_at = Now();
+
+      $categories->save();
+      return redirect('/categories')->with('success', 'Category Successfully Added!');
     }
 
     /**
@@ -55,9 +69,10 @@ class CategoriesController extends Controller
      * @param  \App\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categories $categories)
+    public function edit($id)
     {
-        //
+        $categories = Categories::find($id);
+        return view('categories.edit', compact('categories'));
     }
 
     /**
@@ -67,9 +82,21 @@ class CategoriesController extends Controller
      * @param  \App\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+        'cat_code'=>'required',
+        'cat_name'=> 'required'
+      ]);
+
+      $categories = Categories::find($id);
+      $categories->cat_code = $request->get('cat_code');
+      $categories->cat_name = $request->get('cat_name');
+      $categories->is_active = 1;
+      $categories->updated_at = Now();
+
+      $categories->save();
+      return redirect('/categories')->with('success', 'Category Successfully Updated!');
     }
 
     /**
@@ -78,8 +105,26 @@ class CategoriesController extends Controller
      * @param  \App\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy($id)
     {
-        //
+        $categories = Categories::find($id);
+        $categories->delete();
+
+        return redirect('/categories')->with('success', 'Category Successfully Deleted!');
+    }
+    public function deactivate($id)
+    {
+        $categories = Categories::find($id);
+        $categories->is_active = 2;
+        $categories->save();
+        return redirect('/categories')->with('success', 'Category Successfully Deactivated!');
+    }
+
+    public function activate($id)
+    {
+        $categories = Categories::find($id);
+        $categories->is_active = 1;
+        $categories->save();
+        return redirect('/categories')->with('success', 'Category Successfully Activated!');
     }
 }

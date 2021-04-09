@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-  .uper {
-    margin-top: 40px;
-  }
-</style>
+
 <!-- create -->
-<div class="card uper">
+<div class="card">
   <div class="card-header">
-    Add
+    <h3>New Supplier</h3>
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -21,29 +17,28 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('info.store') }}">
+      <form method="post" action="{{ route('suppliers.store') }}">
           <div class="form-group">
               @csrf
-              <label for="name">First Name:</label>
-              <input type="text" class="form-control" name="firstname"/>
+              <label for="supp_code">Supplier Code:</label>
+              <input type="text" class="form-control" name="supp_code"/>
           </div>
           <div class="form-group">
-              <label for="price">Middle Name:</label>
-              <input type="text" class="form-control" name="middlename"/>
+              <label for="supp_name">Supplier Name:</label>
+              <input type="text" class="form-control" name="supp_name"/>
           </div>
           <div class="form-group">
-              <label for="quantity">Last Name:</label>
-              <input type="text" class="form-control" name="lastname"/>
+              <label for="loc">Location:</label>
+              <input type="text" class="form-control" name="loc"/>
           </div>
           <div class="form-group">
-              <label for="quantity">Age:</label>
-              <input type="text" class="form-control" name="age"/>
+              <label for="contact">Contact:</label>
+              <input type="text" class="form-control" name="contact"/>
           </div>
-          <div class="form-group">
-              <label for="quantity">City:</label>
-              <input type="text" class="form-control" name="city"/>
+          <div class="form-group" style="float: center;">
+          <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>
+          <a href="{{ url()->previous() }}" class="btn btn-secondary"> Back </a>
           </div>
-          <button type="submit" class="btn btn-primary">Add</button>
       </form>
   </div>
 </div>

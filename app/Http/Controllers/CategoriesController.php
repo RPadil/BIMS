@@ -88,7 +88,7 @@ class CategoriesController extends Controller
         'cat_code'=>'required',
         'cat_name'=> 'required'
       ]);
-
+        //update
       $categories = Categories::find($id);
       $categories->cat_code = $request->get('cat_code');
       $categories->cat_name = $request->get('cat_name');

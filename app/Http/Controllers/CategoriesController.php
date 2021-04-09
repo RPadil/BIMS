@@ -107,6 +107,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
+        //delete
         $categories = Categories::find($id);
         $categories->delete();
 

@@ -52,7 +52,7 @@
                           <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Users</a>
                             <a class="dropdown-item" href="{{ route('suppliers.index') }}">Suppliers</a>
-                            <a class="dropdown-item" href="#">Product Categories</a>
+                            <a class="dropdown-item" href="{{ route('categories.index') }}">Product Categories</a>
                             <a class="dropdown-item" href="#">Product Sub Categories</a>
                             <a class="dropdown-item" href="#">SKUs</a>
                           </div>

@@ -129,6 +129,7 @@ class SuppliersController extends Controller
      */
     public function deactivate($id)
     {
+        //deactivate
         $suppliers = Suppliers::find($id);
         $suppliers->is_active = 2;
         $suppliers->save();
@@ -137,6 +138,7 @@ class SuppliersController extends Controller
 
     public function activate($id)
     {
+        //activate
         $suppliers = Suppliers::find($id);
         $suppliers->is_active = 1;
         $suppliers->save();

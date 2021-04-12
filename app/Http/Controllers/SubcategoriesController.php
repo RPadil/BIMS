@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subcategories;
+use App\Categories;
 use Illuminate\Http\Request;
 
 class SubcategoriesController extends Controller
@@ -26,7 +27,8 @@ class SubcategoriesController extends Controller
      */
     public function create()
     {
-        return view('subcategories.create');
+        $categories = Categories::all();
+        return view('subcategories.create',compact('categories'));
     }
 
     /**

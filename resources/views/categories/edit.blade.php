@@ -17,16 +17,16 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('categories.update', $supplier->id) }}">
+      <form method="post" action="{{ route('categories.update', $categories->id) }}">
         @method('PATCH')
         @csrf
           <div class="form-group">
               <label for="cat_code">Category Code:</label>
-              <input type="text" class="form-control" name="cat_code" value={{ $categories->cat_code }} >
+              <input type="text" class="form-control" name="cat_code" value="{{ $categories->cat_code }}">
           </div>
           <div class="form-group">
               <label for="cat_name">Category Name:</label>
-              <input type="text" class="form-control" name="cat_name" value={{ $categories->cat_name }} >
+              <input type="text" class="form-control" name="cat_name" value="{{ $categories->cat_name }}">
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

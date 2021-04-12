@@ -22,19 +22,19 @@
         @csrf
           <div class="form-group">
               <label for="supp_code">Supplier Code:</label>
-              <input type="text" class="form-control" name="supp_code" value={{ $supplier->supp_code }} >
+              <input type="text" class="form-control" name="supp_code" value="{{ $supplier->supp_code }}">
           </div>
           <div class="form-group">
               <label for="supp_name">Supplier Name:</label>
-              <input type="text" class="form-control" name="supp_name" value={{ $supplier->supp_name }} >
+              <input type="text" class="form-control" name="supp_name" value="{{ $supplier->supp_name }}">
           </div>
           <div class="form-group">
               <label for="loc">Location:</label>
-              <input type="text" class="form-control" name="loc" value={{ $supplier->location }} >
+              <input type="text" class="form-control" name="loc" value="{{ $supplier->location }}">
           </div>
           <div class="form-group">
               <label for="contact">Contact:</label>
-              <input type="text" class="form-control" name="contact" value={{ $supplier->contact }} >
+              <input type="text" class="form-control" name="contact" value="{{ $supplier->contact }}">
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

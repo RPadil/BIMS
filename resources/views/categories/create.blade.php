@@ -20,12 +20,12 @@
       <form method="post" action="{{ route('categories.store') }}">
           <div class="form-group">
               @csrf
-              <label for="supp_code">Category Code:</label>
-              <input type="text" class="form-control" name="supp_code"/>
+              <label for="cat_code">Category Code:</label>
+              <input type="text" class="form-control" name="cat_code"/>
           </div>
           <div class="form-group">
-              <label for="supp_name">Category Name:</label>
-              <input type="text" class="form-control" name="supp_name"/>
+              <label for="cat_name">Category Name:</label>
+              <input type="text" class="form-control" name="cat_name"/>
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

@@ -14,7 +14,9 @@ class SubcategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $subcategories = Subcategories::latest()->paginate(5);
+        return view('subcategories.index',compact('subcategories'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +26,7 @@ class SubcategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('subcategories.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class SubcategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'subcat_code'=>'required',
+        'subcat_name'=> 'required'
+      ]);
+
+      $subcategories = new Subcategories();
+      $subcategories->subcat_code = $request->get('subcat_code');
+      $subcategories->subcat_name = $request->get('subcat_name');
+      $subcategories->is_active = 1;
+      $subcategories->created_at = Now();
+
+      $subcategories->save();
+      return redirect('/subcategories')->with('success', 'Sub Category Successfully Added!');
     }
 
     /**
@@ -55,9 +69,10 @@ class SubcategoriesController extends Controller
      * @param  \App\Subcategories  $subcategories
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcategories $subcategories)
+    public function edit($id)
     {
-        //
+        $subcategories = Subcategories::find($id);
+        return view('subcategories.edit', compact('subcategories'));
     }
 
     /**
@@ -67,9 +82,21 @@ class SubcategoriesController extends Controller
      * @param  \App\Subcategories  $subcategories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategories $subcategories)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+        'subcat_code'=>'required',
+        'subcat_name'=> 'required'
+      ]);
+        //update
+      $subcategories = Subcategories::find($id);
+      $subcategories->subcat_code = $request->get('subcat_code');
+      $subcategories->subcat_name = $request->get('subcat_name');
+      $subcategories->is_active = 1;
+      $subcategories->updated_at = Now();
+
+      $subcategories->save();
+      return redirect('/subcategories')->with('success', 'Sub Category Successfully Updated!');
     }
 
     /**
@@ -78,8 +105,28 @@ class SubcategoriesController extends Controller
      * @param  \App\Subcategories  $subcategories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategories $subcategories)
+    public function destroy($id)
     {
-        //
+        $subcategories = Subcategories::find($id);
+        $subcategories->delete();
+
+        return redirect('/subcategories')->with('success', 'Sub Category Successfully Deleted!');
+    }
+    public function deactivate($id)
+    {
+        //deactivate
+        $subcategories = Subcategories::find($id);
+        $subcategories->is_active = 2;
+        $subcategories->save();
+        return redirect('/subcategories')->with('success', 'Sub Category Successfully Deactivated!');
+    }
+
+    public function activate($id)
+    {
+        //activate
+        $subcategories = Subcategories::find($id);
+        $subcategories->is_active = 1;
+        $subcategories->save();
+        return redirect('/subcategories')->with('success', 'Sub Category Successfully Activated!');
     }
 }

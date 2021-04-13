@@ -5,7 +5,7 @@
 <!-- create -->
 <div class="card">
   <div class="card-header">
-    <h3>Update Category</h3>
+    <h3>Update Product Sub-Category</h3>
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -17,16 +17,28 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('categories.update', $categories->id) }}">
-        @method('PATCH')
-        @csrf
+      <form method="post" action="{{ route('subcategories.store') }}">
           <div class="form-group">
-              <label for="cat_code">Category Code:</label>
-              <input type="text" class="form-control" name="cat_code" value="{{ $categories->cat_code }}">
+              @csrf
+              <label for="subcat_code">Product Sub-Category Code:</label>
+              <input type="text" class="form-control" name="subcat_code" value="{{ $subcategories->subcat_code }}"/>
+          </div>
+          <div class="form-group">
+              <label for="subcat_name">Product Sub-Category Name:</label>
+              <input type="text" class="form-control" name="subcat_name" value="{{ $subcategories->subcat_name }}"/>
           </div>
           <div class="form-group">
               <label for="cat_name">Category Name:</label>
-              <input type="text" class="form-control" name="cat_name" value="{{ $categories->cat_name }}">
+              <select class="form-control" name="cat_name">
+                <option value="">-- Select Category --</option>
+                @foreach ($cat_array as $key => $value)
+                @if($key == $subcategories->cat_id)
+                <option value="{{ $key }}" selected="selected">{{ $value }}</option>
+                @else
+                <option value="{{ $key }}">{{ $value }}</option>
+                @endif
+                @endforeach
+              </select>
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

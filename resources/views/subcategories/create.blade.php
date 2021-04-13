@@ -5,7 +5,7 @@
 <!-- create -->
 <div class="card">
   <div class="card-header">
-    <h3>New Sub Category</h3>
+    <h3>New Product Sub-Category</h3>
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,11 +20,11 @@
       <form method="post" action="{{ route('subcategories.store') }}">
           <div class="form-group">
               @csrf
-              <label for="subcat_code">Sub Category Code:</label>
+              <label for="subcat_code">Product Sub-Category Code:</label>
               <input type="text" class="form-control" name="subcat_code"/>
           </div>
           <div class="form-group">
-              <label for="subcat_name">Sub Category Name:</label>
+              <label for="subcat_name">Product Sub-Category Name:</label>
               <input type="text" class="form-control" name="subcat_name"/>
           </div>
           <div class="form-group">
@@ -32,6 +32,9 @@
               <select class="form-control" name="cat_name">
                 <option value="">-- Select Category --</option>
                 @foreach ($categories as $key => $value)
+                <option value="{{ $value->id }}">{{ $value->cat_name }}</option>
+                @endforeach
+              </select>
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

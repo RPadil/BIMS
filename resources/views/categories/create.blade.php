@@ -5,7 +5,7 @@
 <!-- create -->
 <div class="card">
   <div class="card-header">
-    <h3>New Category</h3>
+    <h3>New Product Category</h3>
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,11 +20,11 @@
       <form method="post" action="{{ route('categories.store') }}">
           <div class="form-group">
               @csrf
-              <label for="cat_code">Category Code:</label>
+              <label for="cat_code">Product Category Code:</label>
               <input type="text" class="form-control" name="cat_code"/>
           </div>
           <div class="form-group">
-              <label for="cat_name">Category Name:</label>
+              <label for="cat_name">Product Category Name:</label>
               <input type="text" class="form-control" name="cat_name"/>
           </div>
           <div class="form-group" style="float: center;">

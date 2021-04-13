@@ -4,16 +4,17 @@
   <div class="card">
   <div class="card-header">
     <div>
-      <h3>Sub Categories</h3>
+      <h3>Product Sub-Categories</h3>
     </div>
-      <a href="{{ route('subcategories.create')}}" class="btn btn-success float-left">Add New Sub Category</a>
+      <a href="{{ route('subcategories.create')}}" class="btn btn-success float-left">Add New Product Sub-Category</a>
   </div>
   <div class="card-body">
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>Sub Category Code</td>
-          <td>Sub Category Name</td>
+          <td>Product Sub-Category Code</td>
+          <td>Product Sub-Category Name</td>
+          <td>Product Category</td>
           <td>Active/Inactive</td>
           <td colspan="2">Action</td>
         </tr>
@@ -23,6 +24,7 @@
         <tr>
             <td>{{$subcategory->subcat_code}}</td>
             <td>{{$subcategory->subcat_name}}</td>
+            <td>{{$cat_array[$subcategory->cat_id]}}</td>
             @if ($subcategory->is_active === 1)
             <td>Active</td>
             @else

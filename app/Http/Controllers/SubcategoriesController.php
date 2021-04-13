@@ -15,8 +15,17 @@ class SubcategoriesController extends Controller
      */
     public function index()
     {
+        $cat_array = array();
         $subcategories = Subcategories::latest()->paginate(5);
-        return view('subcategories.index',compact('subcategories'))
+        $categories = Categories::select('id','cat_name')->get();
+
+        foreach ($categories as $category)
+        {
+            $cat_array[$category->id] = $category->cat_name;
+        }
+         
+        // dd($cat_array);
+        return view('subcategories.index',compact('subcategories','cat_array'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -27,7 +36,7 @@ class SubcategoriesController extends Controller
      */
     public function create()
     {
-        $categories = Categories::all();
+        $categories = Categories::select('id','cat_name')->get();
         return view('subcategories.create',compact('categories'));
     }
 
@@ -41,12 +50,14 @@ class SubcategoriesController extends Controller
     {
         $request->validate([
         'subcat_code'=>'required',
-        'subcat_name'=> 'required'
+        'subcat_name'=> 'required',
+        'cat_name'=> 'required'
       ]);
 
       $subcategories = new Subcategories();
       $subcategories->subcat_code = $request->get('subcat_code');
       $subcategories->subcat_name = $request->get('subcat_name');
+      $subcategories->cat_id = $request->get('cat_name');
       $subcategories->is_active = 1;
       $subcategories->created_at = Now();
 
@@ -73,8 +84,15 @@ class SubcategoriesController extends Controller
      */
     public function edit($id)
     {
+        $cat_array = array();
+        $categories = Categories::select('id','cat_name')->get();
+
+        foreach ($categories as $category)
+        {
+            $cat_array[$category->id] = $category->cat_name;
+        }
         $subcategories = Subcategories::find($id);
-        return view('subcategories.edit', compact('subcategories'));
+        return view('subcategories.edit', compact('subcategories','cat_array'));
     }
 
     /**

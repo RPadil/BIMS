@@ -4,16 +4,16 @@
   <div class="card">
   <div class="card-header">
     <div>
-      <h3>Categories</h3>
+      <h3>Product Categories</h3>
     </div>
-      <a href="{{ route('categories.create')}}" class="btn btn-success float-left">Add New Category</a>
+      <a href="{{ route('categories.create')}}" class="btn btn-success float-left">Add New Product Category</a>
   </div>
   <div class="card-body">
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>Category Code</td>
-          <td>Category Name</td>
+          <td>Product Category Code</td>
+          <td>Product Category Name</td>
           <td>Active/Inactive</td>
           <td colspan="2">Action</td>
         </tr>

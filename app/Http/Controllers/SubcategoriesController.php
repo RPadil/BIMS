@@ -146,7 +146,7 @@ class SubcategoriesController extends Controller
 
     public function activate($id)
     {
-        //activate
+        //activates
         $subcategories = Subcategories::find($id);
         $subcategories->is_active = 1;
         $subcategories->save();

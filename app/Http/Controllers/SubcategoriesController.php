@@ -129,6 +129,7 @@ class SubcategoriesController extends Controller
      */
     public function destroy($id)
     {
+        //delete
         $subcategories = Subcategories::find($id);
         $subcategories->delete();
 

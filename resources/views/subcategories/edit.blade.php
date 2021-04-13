@@ -17,7 +17,9 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('subcategories.store') }}">
+      <form method="post" action="{{ route('subcategories.update', $subcategories->id) }}">
+        @method('PATCH')
+        @csrf
           <div class="form-group">
               @csrf
               <label for="subcat_code">Product Sub-Category Code:</label>

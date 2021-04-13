@@ -106,12 +106,14 @@ class SubcategoriesController extends Controller
     {
         $request->validate([
         'subcat_code'=>'required',
-        'subcat_name'=> 'required'
+        'subcat_name'=> 'required',
+        'cat_name'=> 'required'
       ]);
         //update
       $subcategories = Subcategories::find($id);
       $subcategories->subcat_code = $request->get('subcat_code');
       $subcategories->subcat_name = $request->get('subcat_name');
+      $subcategories->cat_id = $request->get('cat_name');
       $subcategories->is_active = 1;
       $subcategories->updated_at = Now();
 

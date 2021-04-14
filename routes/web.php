@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('suppliers', 'SuppliersController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('subcategories', 'SubcategoriesController');
-
+Route::resource('sku', 'SkuController');
+Route::get('subcatdd/{id}','SkuController@subcatdd');

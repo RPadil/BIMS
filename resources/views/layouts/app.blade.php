@@ -54,7 +54,7 @@
                             <a class="dropdown-item" href="{{ route('suppliers.index') }}">Suppliers</a>
                             <a class="dropdown-item" href="{{ route('categories.index') }}">Product Categories</a>
                             <a class="dropdown-item" href="{{ route('subcategories.index') }}">Product Sub Categories</a>
-                            <a class="dropdown-item" href="#">SKUs</a>
+                            <a class="dropdown-item" href="{{ route('sku.index') }}">SKUs</a>
                           </div>
                         </li>
                     </ul>

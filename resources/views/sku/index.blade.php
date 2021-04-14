@@ -1,0 +1,50 @@
+@extends('layouts.app')
+
+@section('content')
+  <div class="card">
+  <div class="card-header">
+    <div>
+      <h3>SKUs</h3>
+    </div>
+      <a href="{{ route('sku.create')}}" class="btn btn-success float-left">Add New SKU</a>
+  </div>
+  <div class="card-body">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <td>SKU Name</td>
+          <td>SKU Description</td>
+          <td>Category</td>
+          <td>Sub Category</td>
+          <td>Active/Inactive</td>
+          <td colspan="2">Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($sku as $skus)
+        <tr>
+            <td>{{$skus->sku_name}}</td>
+            <td>{{$skus->sku_desc}}</td>
+            <td>{{$cat_array[$skus->cat_id]}}</td>
+            <td>{{$subcat_array[$skus->subcat_id]}}</td>
+            @if ($skus->is_active === 1)
+            <td>Active</td>
+            @else
+            <td>Inactive</td>
+            @endif
+            <td><a href="{{ route('sku.edit',$skus->id)}}" class="btn btn-primary">Edit</a></td>
+            <td>
+                <form action="{{ route('sku.destroy', $skus->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+        {{ $sku->links() }}
+    </tbody>
+  </table>
+</div>
+</div>
+@endsection

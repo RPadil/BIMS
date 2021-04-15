@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Subcategories;
 use App\Categories;
 use Illuminate\Http\Request;
@@ -54,7 +55,9 @@ class SubcategoriesController extends Controller
         'cat_name'=> 'required'
       ]);
 
+      $subcat = DB::table('subcategories')->max('subcat_id');
       $subcategories = new Subcategories();
+      $subcategories->subcat_id = $subcat + 1;
       $subcategories->subcat_code = $request->get('subcat_code');
       $subcategories->subcat_name = $request->get('subcat_name');
       $subcategories->cat_id = $request->get('cat_name');

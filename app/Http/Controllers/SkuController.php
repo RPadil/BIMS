@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Sku;
 use App\Subcategories;
 use App\Categories;
@@ -29,10 +30,10 @@ class SkuController extends Controller
         {
             $subcat_array[$subcategory->id] = $subcategory->subcat_name;
         }
-
+        // dd($subcat_array);
         $sku = Sku::latest()->paginate(5);
-        return view('sku.index',compact('sku','cat_array','subcat_array'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        // return view('sku.index',compact('sku','cat_array','subcat_array'))
+            // ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -61,7 +62,9 @@ class SkuController extends Controller
         'subcat_name'=> 'required'
       ]);
 
+      $sk = DB::table('skus')->max('sku_id');
       $sku = new Sku();
+      $sku->sku_id = $sk + 1;
       $sku->sku_name = $request->get('sku_name');
       $sku->sku_desc = $request->get('sku_desc');
       $sku->cat_id = $request->get('cat_name');

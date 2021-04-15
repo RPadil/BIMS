@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Suppliers;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,9 @@ class SuppliersController extends Controller
         'contact'=> 'required'
       ]);
 
+      $supp = DB::table('suppliers')->max('supp_id');
       $suppliers = new Suppliers();
+      $suppliers->supp_id = $supp + 1;
       $suppliers->supp_code = $request->get('supp_code');
       $suppliers->supp_name = $request->get('supp_name');
       $suppliers->location = $request->get('loc');

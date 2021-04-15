@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Categories;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,9 @@ class CategoriesController extends Controller
         'cat_name'=> 'required'
       ]);
 
+      $cat = DB::table('categories')->max('cat_id');
       $categories = new Categories();
+      $categories->cat_id = $cat + 1;
       $categories->cat_code = $request->get('cat_code');
       $categories->cat_name = $request->get('cat_name');
       $categories->is_active = 1;

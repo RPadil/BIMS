@@ -158,7 +158,7 @@ class SkuController extends Controller
 
     public function activate($id)
     {
-        //activate
+        //activates
         $sku = Sku::find($id);
         $sku->is_active = 1;
         $sku->save();

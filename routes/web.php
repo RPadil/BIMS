@@ -22,4 +22,5 @@ Route::resource('suppliers', 'SuppliersController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('subcategories', 'SubcategoriesController');
 Route::resource('sku', 'SkuController');
+Route::resource('item', 'ItemController');
 Route::get('subcatdd/{id}','SkuController@subcatdd');

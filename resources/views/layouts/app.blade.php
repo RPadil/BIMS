@@ -55,6 +55,7 @@
                             <a class="dropdown-item" href="{{ route('categories.index') }}">Product Categories</a>
                             <a class="dropdown-item" href="{{ route('subcategories.index') }}">Product Sub Categories</a>
                             <a class="dropdown-item" href="{{ route('sku.index') }}">SKUs</a>
+                            <a class="dropdown-item" href="{{ route('item.index') }}">Items</a>
                           </div>
                         </li>
                     </ul>

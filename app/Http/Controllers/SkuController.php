@@ -120,7 +120,7 @@ class SkuController extends Controller
         'cat_name'=>'required',
         'subcat_name'=> 'required'
       ]);
-        //update
+        //updates
       $sku = Sku::find($id);
       $sku->sku_name = $request->get('sku_name');
       $sku->sku_desc = $request->get('sku_desc');

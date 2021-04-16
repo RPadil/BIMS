@@ -149,7 +149,7 @@ class SkuController extends Controller
     }
     public function deactivate($id)
     {
-        //deactivate
+        //deactivates
         $sku = Sku::find($id);
         $sku->is_active = 2;
         $sku->save();

@@ -97,6 +97,7 @@ class SkuController extends Controller
      */
     public function edit($id)
     {
+        //edit
         $categories = Categories::select('id','cat_name','cat_id')->get();
         $sku = Sku::find($id);
         $subcategories = Subcategories::where('cat_id',$sku->cat_id)->get();

@@ -141,7 +141,7 @@ class SkuController extends Controller
      */
     public function destroy($id)
     {
-        //delete
+        //deletes
         $sku = Sku::find($id);
         $sku->delete();
 

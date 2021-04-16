@@ -44,6 +44,7 @@ class SkuController extends Controller
      */
     public function create()
     {
+        //create
         $categories = Categories::select('id','cat_name','cat_id')->get();
         return view('sku.create',compact('categories'));
     }

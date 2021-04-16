@@ -9,7 +9,7 @@
       <a href="{{ route('subcategories.create')}}" class="btn btn-success float-left">Add New Product Sub-Category</a>
   </div>
   <div class="card-body">
-  <table class="table table-striped">
+  <table class="table table-striped" border="0">
     <thead>
         <tr>
           <td>Product Sub-Category Code</td>
@@ -40,7 +40,14 @@
             </td>
         </tr>
         @endforeach
-        {{ $subcategories->links() }}
+      <tr>
+      <td></td>
+      <td></td>
+      <td style="float: left;">{{ $subcategories->links() }}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
     </tbody>
   </table>
 </div>

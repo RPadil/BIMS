@@ -32,7 +32,7 @@
               <select class="form-control" name="cat_name" id="cat_id">
                 <option value="">-- Select Category --</option>
                 @foreach ($categories as $value)
-                <option value="{{ $value->id }}">{{ $value->cat_name }}</option>
+                <option value="{{ $value->cat_id }}">{{ $value->cat_name }}</option>
                 @endforeach
               </select>
           </div>
@@ -48,35 +48,4 @@
       </form>
   </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script>
-          $(document).ready(function() {
-          $('#cat_id').on('change', function() {
-              var getStId = $(this).val();
-              if(getStId) {
-                  $.ajax({
-                      url: '/subcatdd/'+getStId,
-                      type: "GET",
-                      data : {"_token":"{{ csrf_token() }}"},
-                      dataType: "json",
-                      success:function(data) {
-                          //console.log(data);
-                        if(data){
-                          $('#subcat_id').empty();
-                          $('#subcat_id').focus;
-                          $('#subcat_id').append('<option value="">-- Select Sub Category --</option>'); 
-                          $.each(data, function(key, value){
-                          $('select[name="subcat_id"]').append('<option value="'+ value.id +'">' + value.subcat_name+ '</option>');
-                      });
-                    }else{
-                      $('#subcat_id').empty();
-                    }
-                    }
-                  });
-              }else{
-                $('#subcat_id').empty();
-              }
-          });
-      });
-    </script>
 @endsection

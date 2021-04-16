@@ -17,6 +17,7 @@ class SkuController extends Controller
      */
     public function index()
     {
+        //index
         $cat_array = array();
         $categories = Categories::select('id','cat_name')->get();
         foreach ($categories as $category)
@@ -32,8 +33,8 @@ class SkuController extends Controller
         }
         // dd($subcat_array);
         $sku = Sku::latest()->paginate(5);
-        // return view('sku.index',compact('sku','cat_array','subcat_array'))
-            // ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('sku.index',compact('sku','cat_array','subcat_array'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -43,7 +44,7 @@ class SkuController extends Controller
      */
     public function create()
     {
-        $categories = Categories::select('id','cat_name')->get();
+        $categories = Categories::select('id','cat_name','cat_id')->get();
         return view('sku.create',compact('categories'));
     }
 
@@ -95,8 +96,11 @@ class SkuController extends Controller
      */
     public function edit($id)
     {
+        $categories = Categories::select('id','cat_name','cat_id')->get();
         $sku = Sku::find($id);
-        return view('sku.edit', compact('sku'));
+        $subcategories = Subcategories::where('cat_id',$sku->cat_id)->get();
+        // dd($subcategories);
+        return view('sku.edit', compact('sku','categories','subcategories'));
     }
 
     /**
@@ -110,12 +114,16 @@ class SkuController extends Controller
     {
         $request->validate([
         'sku_name'=>'required',
-        'sku_desc'=> 'required'
+        'sku_desc'=> 'required',
+        'cat_name'=>'required',
+        'subcat_name'=> 'required'
       ]);
         //update
       $sku = Sku::find($id);
       $sku->sku_name = $request->get('sku_name');
       $sku->sku_desc = $request->get('sku_desc');
+      $sku->cat_id = $request->get('cat_name');
+      $sku->subcat_id = $request->get('subcat_name');
       $sku->is_active = 1;
       $sku->updated_at = Now();
 

@@ -9,7 +9,7 @@
       <a href="{{ route('sku.create')}}" class="btn btn-success float-left">Add New SKU</a>
   </div>
   <div class="card-body">
-  <table class="table table-striped">
+  <table class="table table-striped" border="0">
     <thead>
         <tr>
           <td>SKU Name</td>
@@ -25,8 +25,10 @@
         <tr>
             <td>{{$skus->sku_name}}</td>
             <td>{{$skus->sku_desc}}</td>
+            @if ($skus->cat_id)
             <td>{{$cat_array[$skus->cat_id]}}</td>
             <td>{{$subcat_array[$skus->subcat_id]}}</td>
+            @endif
             @if ($skus->is_active === 1)
             <td>Active</td>
             @else
@@ -42,7 +44,15 @@
             </td>
         </tr>
         @endforeach
-        {{ $sku->links() }}
+        <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="float: left;">{{ $sku->links() }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
     </tbody>
   </table>
 </div>

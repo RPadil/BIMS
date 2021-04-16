@@ -9,7 +9,7 @@
       <a href="{{ route('suppliers.create')}}" class="btn btn-success float-left">Add New Supplier</a>
   </div>
   <div class="card-body">
-  <table class="table table-striped">
+  <table class="table table-striped" border="0">
     <thead>
         <tr>
           <td>Supplier Code</td>
@@ -42,7 +42,15 @@
             </td>
         </tr>
         @endforeach
-        {{ $suppliers->links() }}
+        <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="float: left;">{{ $suppliers->links() }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
     </tbody>
   </table>
 </div>

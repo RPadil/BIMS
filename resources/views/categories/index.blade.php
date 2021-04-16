@@ -9,7 +9,7 @@
       <a href="{{ route('categories.create')}}" class="btn btn-success float-left">Add New Product Category</a>
   </div>
   <div class="card-body">
-  <table class="table table-striped">
+  <table class="table table-striped" border="0">
     <thead>
         <tr>
           <td>Product Category Code</td>
@@ -38,7 +38,13 @@
             </td>
         </tr>
         @endforeach
-        {{ $categories->links() }}
+        <tr>
+        <td></td>
+        <td style="float: right;">{{ $categories->links() }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
     </tbody>
   </table>
 </div>

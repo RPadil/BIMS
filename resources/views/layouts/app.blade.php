@@ -101,3 +101,34 @@
     </div>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+      $(document).ready(function() {
+      $('#cat_id').on('change', function() {
+          var getStId = $(this).val();
+          if(getStId) {
+              $.ajax({
+                  url: '/subcatdd/'+getStId,
+                  type: "GET",
+                  data : {"_token":"{{ csrf_token() }}"},
+                  dataType: "json",
+                  success:function(data) {
+                      console.log(data);
+                    if(data){
+                      $('#subcat_id').empty();
+                      $('#subcat_id').focus;
+                      $('#subcat_id').append('<option value="">-- Select Sub Category --</option>'); 
+                      $.each(data, function(key, value){
+                      $('select[name="subcat_name"]').append('<option value="'+ value.subcat_id +'">' + value.subcat_name+ '</option>');
+                  });
+                }else{
+                  $('#subcat_id').empty();
+                }
+                }
+              });
+          }else{
+            $('#subcat_id').empty();
+          }
+      });
+  });
+</script>

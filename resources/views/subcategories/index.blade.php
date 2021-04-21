@@ -12,11 +12,11 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <td>Product Sub-Category Code</td>
-          <td>Product Sub-Category Name</td>
-          <td>Product Category</td>
-          <td>Active/Inactive</td>
-          <td colspan="2">Action</td>
+          <th>Product Sub-Category Code</th>
+          <th>Product Sub-Category Name</th>
+          <th>Product Category</th>
+          <th>Active/Inactive</th>
+          <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>

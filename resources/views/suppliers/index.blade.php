@@ -12,12 +12,12 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <td>Supplier Code</td>
-          <td>Supplier Name</td>
-          <td>Location</td>
-          <td>Contact</td>
-          <td>Active/Inactive</td>
-          <td colspan="2">Action</td>
+          <th>Supplier Code</th>
+          <th>Supplier Name</th>
+          <th>Location</th>
+          <th>Contact</th>
+          <th>Active/Inactive</th>
+          <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>

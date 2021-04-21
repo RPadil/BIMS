@@ -114,7 +114,7 @@
                   data : {"_token":"{{ csrf_token() }}"},
                   dataType: "json",
                   success:function(data) {
-                      console.log(data);
+                      // console.log(data);
                     if(data){
                       $('#subcat_id').empty();
                       $('#subcat_id').focus;
@@ -129,6 +129,35 @@
               });
           }else{
             $('#subcat_id').empty();
+          }
+      });
+
+      $('#subcat_id').on('change', function() {
+          var catid = $('#cat_id').val();
+          var subcatid = $(this).val();
+          console.log(catid + '~~' + subcatid);
+          if(catid && subcatid) {
+              $.ajax({
+                  url: '/subcatskudd/'+catid+'/'+subcatid,
+                  type: "GET",
+                  data : {"_token":"{{ csrf_token() }}"},
+                  dataType: "json",
+                  success:function(data) {
+                      console.log(data);
+                    if(data){
+                      $('#sku_id').empty();
+                      $('#sku_id').focus;
+                      $('#sku_id').append('<option value="">-- Select SKU --</option>'); 
+                      $.each(data, function(key, value){
+                      $('select[name="sku_name"]').append('<option value="'+ value.sku_id +'">' + value.sku_name+ '</option>');
+                      });
+                    }else{
+                      $('#sku_id').empty();
+                    }
+                  }
+              });
+          }else{
+            $('#sku_id').empty();
           }
       });
   });

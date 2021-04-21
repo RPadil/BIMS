@@ -12,10 +12,10 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <td>Product Category Code</td>
-          <td>Product Category Name</td>
-          <td>Active/Inactive</td>
-          <td colspan="2">Action</td>
+          <th>Product Category Code</th>
+          <th>Product Category Name</th>
+          <th>Active/Inactive</th>
+          <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>

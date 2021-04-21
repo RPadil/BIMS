@@ -12,12 +12,12 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <td>SKU Name</td>
-          <td>SKU Description</td>
-          <td>Category</td>
-          <td>Sub Category</td>
-          <td>Active/Inactive</td>
-          <td colspan="2">Action</td>
+          <th>SKU Name</th>
+          <th>SKU Description</th>
+          <th>Category</th>
+          <th>Sub Category</th>
+          <th>Active/Inactive</th>
+          <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>

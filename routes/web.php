@@ -24,3 +24,4 @@ Route::resource('subcategories', 'SubcategoriesController');
 Route::resource('sku', 'SkuController');
 Route::resource('item', 'ItemController');
 Route::get('subcatdd/{id}','SkuController@subcatdd');
+Route::get('subcatskudd/{catid}/{subcatid}','ItemController@subcatskudd');

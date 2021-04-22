@@ -12,37 +12,37 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <th>Product Category Code</th>
-          <th>Product Category Name</th>
-          <th>Active/Inactive</th>
-          <th colspan="2">Action</th>
+          <th class="centered">Product Category Code</th>
+          <th class="centered">Product Category Name</th>
+          <th class="centered">Active/Inactive</th>
+          <th class="centered" colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach($categories as $category)
         <tr>
-            <td>{{$category->cat_code}}</td>
-            <td>{{$category->cat_name}}</td>
+            <td class="centered">{{$category->cat_code}}</td>
+            <td class="centered">{{$category->cat_name}}</td>
             @if ($category->is_active === 1)
-            <td>Active</td>
+            <td class="centered">Active</td>
             @else
-            <td>Inactive</td>
+            <td class="centered">Inactive</td>
             @endif
-            <td><a href="{{ route('categories.edit',$category->id)}}" class="btn btn-primary">Edit</a></td>
-            <td>
-                <form action="{{ route('categories.destroy', $category->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+            <td class="centered">
+              <a href="{{ route('categories.edit',$category->id)}}" class="btn btn-primary">Edit</a>
+              @if ($category->is_active === 1)
+              <a href="{{ route('categoriesdeactivate',$category->id)}}" class="btn btn-secondary">Deactivate</a> 
+              @else
+              <a href="{{ route('categoriesactivate',$category->id)}}" class="btn btn-secondary">Activate</a> 
+              @endif
+              <a href="{{ route('categories.destroy', $category->id)}}" class="btn btn-danger">Delete</a> 
             </td>
         </tr>
         @endforeach
         <tr>
         <td></td>
-        <td style="float: right;">{{ $categories->links() }}</td>
         <td></td>
-        <td></td>
+        <td style="float: left;">{{ $categories->links() }}</td>
         <td></td>
         </tr>
     </tbody>

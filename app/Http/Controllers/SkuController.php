@@ -147,7 +147,7 @@ class SkuController extends Controller
 
         return redirect('/sku')->with('success', 'SKU Successfully Deleted!');
     }
-    public function deactivate($id)
+    public function skusdeactivate($id)
     {
         //deactivates
         $sku = Sku::find($id);
@@ -156,7 +156,7 @@ class SkuController extends Controller
         return redirect('/sku')->with('success', 'SKU Successfully Deactivated!');
     }
 
-    public function activate($id)
+    public function skusactivate($id)
     {
         //activates
         $sku = Sku::find($id);

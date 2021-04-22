@@ -179,7 +179,7 @@ class ItemController extends Controller
         return redirect('/item')->with('success', 'Item Successfully Deleted!');
     }
 
-    public function deactivate($id)
+    public function itemsdeactivate($id)
     {
         //deactivates
         $item = Item::find($id);
@@ -188,7 +188,7 @@ class ItemController extends Controller
         return redirect('/item')->with('success', 'Item Successfully Deactivated!');
     }
 
-    public function activate($id)
+    public function itemsactivate($id)
     {
         //activates
         $item = Item::find($id);

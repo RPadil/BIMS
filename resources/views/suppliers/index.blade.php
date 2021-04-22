@@ -12,33 +12,34 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <th>Supplier Code</th>
-          <th>Supplier Name</th>
-          <th>Location</th>
-          <th>Contact</th>
-          <th>Active/Inactive</th>
-          <th colspan="2">Action</th>
+          <th class="centered">Supplier Code</th>
+          <th class="centered">Supplier Name</th>
+          <th class="centered">Location</th>
+          <th class="centered">Contact</th>
+          <th class="centered">Active/Inactive</th>
+          <th class="centered">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach($suppliers as $supplier)
         <tr>
-            <td>{{$supplier->supp_code}}</td>
-            <td>{{$supplier->supp_name}}</td>
-            <td>{{$supplier->location}}</td>
-            <td>{{$supplier->contact}}</td>
+            <td class="centered">{{$supplier->supp_code}}</td>
+            <td class="centered">{{$supplier->supp_name}}</td>
+            <td class="centered">{{$supplier->location}}</td>
+            <td class="centered">{{$supplier->contact}}</td>
             @if ($supplier->is_active === 1)
-            <td>Active</td>
+            <td class="centered">Active</td>
             @else
-            <td>Inactive</td>
+            <td class="centered">Inactive</td>
             @endif
-            <td><a href="{{ route('suppliers.edit',$supplier->id)}}" class="btn btn-primary">Edit</a></td>
-            <td>
-                <form action="{{ route('suppliers.destroy', $supplier->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+            <td class="centered">
+              <a href="{{ route('suppliers.edit',$supplier->id)}}" class="btn btn-primary">Edit</a> 
+              @if ($supplier->is_active === 1)
+              <a href="{{ route('suppliersdeactivate',$supplier->id)}}" class="btn btn-secondary">Deactivate</a> 
+              @else
+              <a href="{{ route('suppliersactivate',$supplier->id)}}" class="btn btn-secondary">Activate</a> 
+              @endif
+              <a href="{{ route('suppliers.destroy',$supplier->id)}}" class="btn btn-danger">Delete</a> 
             </td>
         </tr>
         @endforeach
@@ -46,8 +47,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td style="float: left;">{{ $suppliers->links() }}</td>
-        <td></td>
+        <td style="float: right;">{{ $suppliers->links() }}</td>
         <td></td>
         <td></td>
         </tr>

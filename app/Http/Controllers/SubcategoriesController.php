@@ -138,7 +138,7 @@ class SubcategoriesController extends Controller
 
         return redirect('/subcategories')->with('success', 'Sub Category Successfully Deleted!');
     }
-    public function deactivate($id)
+    public function subcategoriesdeactivate($id)
     {
         //deactivate
         $subcategories = Subcategories::find($id);
@@ -147,7 +147,7 @@ class SubcategoriesController extends Controller
         return redirect('/subcategories')->with('success', 'Sub Category Successfully Deactivated!');
     }
 
-    public function activate($id)
+    public function subcategoriesactivate($id)
     {
         //activate
         $subcategories = Subcategories::find($id);

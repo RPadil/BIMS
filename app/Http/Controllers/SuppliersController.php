@@ -130,7 +130,7 @@ class SuppliersController extends Controller
      * @param  \App\Suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function deactivate($id)
+    public function suppliersdeactivate($id)
     {
         //deactivate
         $suppliers = Suppliers::find($id);
@@ -139,7 +139,7 @@ class SuppliersController extends Controller
         return redirect('/suppliers')->with('success', 'Supplier Successfully Deactivated!');
     }
 
-    public function activate($id)
+    public function suppliersactivate($id)
     {
         //activate
         $suppliers = Suppliers::find($id);

@@ -12,31 +12,32 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <th>Product Sub-Category Code</th>
-          <th>Product Sub-Category Name</th>
-          <th>Product Category</th>
-          <th>Active/Inactive</th>
-          <th colspan="2">Action</th>
+          <th class="centered">Product Sub-Category Code</th>
+          <th class="centered">Product Sub-Category Name</th>
+          <th class="centered">Product Category</th>
+          <th class="centered">Active/Inactive</th>
+          <th class="centered" colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach($subcategories as $subcategory)
         <tr>
-            <td>{{$subcategory->subcat_code}}</td>
-            <td>{{$subcategory->subcat_name}}</td>
-            <td>{{$cat_array[$subcategory->cat_id]}}</td>
+            <td class="centered">{{$subcategory->subcat_code}}</td>
+            <td class="centered">{{$subcategory->subcat_name}}</td>
+            <td class="centered">{{$cat_array[$subcategory->cat_id]}}</td>
             @if ($subcategory->is_active === 1)
-            <td>Active</td>
+            <td class="centered">Active</td>
             @else
-            <td>Inactive</td>
+            <td class="centered">Inactive</td>
             @endif
-            <td><a href="{{ route('subcategories.edit',$subcategory->id)}}" class="btn btn-primary">Edit</a></td>
-            <td>
-                <form action="{{ route('subcategories.destroy', $subcategory->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+            <td class="centered">
+              <a href="{{ route('subcategories.edit',$subcategory->id)}}" class="btn btn-primary">Edit</a>
+              @if ($subcategory->is_active === 1)
+              <a href="{{ route('subcategoriesdeactivate',$subcategory->id)}}" class="btn btn-secondary">Deactivate</a> 
+              @else
+              <a href="{{ route('subcategoriesactivate',$subcategory->id)}}" class="btn btn-secondary">Activate</a> 
+              @endif
+              <a href="{{ route('subcategories.destroy', $subcategory->id)}}" class="btn btn-danger">Delete</a> 
             </td>
         </tr>
         @endforeach

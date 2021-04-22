@@ -116,7 +116,7 @@ class CategoriesController extends Controller
 
         return redirect('/categories')->with('success', 'Category Successfully Deleted!');
     }
-    public function deactivate($id)
+    public function categoriesdeactivate($id)
     {
         //deactivate
         $categories = Categories::find($id);
@@ -125,7 +125,7 @@ class CategoriesController extends Controller
         return redirect('/categories')->with('success', 'Category Successfully Deactivated!');
     }
 
-    public function activate($id)
+    public function categoriesactivate($id)
     {
         //activate
         $categories = Categories::find($id);

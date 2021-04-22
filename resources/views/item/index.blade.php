@@ -12,41 +12,42 @@
   <table class="table table-striped" border="0">
     <thead>
         <tr>
-          <th>Item Name</th>
-          <th>Item Description</th>
-          <th>Category</th>
-          <th>Sub Category</th>
-          <th>SKU</th>
-          <th>Supplier</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Active/Inactive</th>
-          <th colspan="2">Action</th>
+          <th class="centered">Item Name</th>
+          <th class="centered">Item Description</th>
+          <th class="centered">Category</th>
+          <th class="centered">Sub Category</th>
+          <th class="centered">SKU</th>
+          <th class="centered">Supplier</th>
+          <th class="centered">Quantity</th>
+          <th class="centered">Price</th>
+          <th class="centered">Active/Inactive</th>
+          <th class="centered" colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach($items as $item)
         <tr>
-            <td>{{$item->item_name}}</td>
-            <td>{{$item->item_desc}}</td>
-            <td>{{$cat_array[$item->cat_id]}}</td>
-            <td>{{$subcat_array[$item->subcat_id]}}</td>
-            <td>{{$sku_array[$item->sku_id]}}</td>
-            <td>{{$supp_array[$item->supp_id]}}</td>
-            <td>{{$item->qty}}</td>
-            <td><?php echo "₱"; ?>{{number_format($item->price,2)}}</td>
+            <td class="centered">{{$item->item_name}}</td>
+            <td class="centered">{{$item->item_desc}}</td>
+            <td class="centered">{{$cat_array[$item->cat_id]}}</td>
+            <td class="centered">{{$subcat_array[$item->subcat_id]}}</td>
+            <td class="centered">{{$sku_array[$item->sku_id]}}</td>
+            <td class="centered">{{$supp_array[$item->supp_id]}}</td>
+            <td class="centered">{{$item->qty}}</td>
+            <td class="centered"><?php echo "₱"; ?>{{number_format($item->price,2)}}</td>
             @if ($item->is_active === 1)
-            <td>Active</td>
+            <td class="centered">Active</td>
             @else
-            <td>Inactive</td>
+            <td class="centered">Inactive</td>
             @endif
-            <td><a href="{{ route('item.edit',$item->id)}}" class="btn btn-primary">Edit</a></td>
-            <td>
-                <form action="{{ route('item.destroy', $item->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+            <td class="centered">
+              <a href="{{ route('item.edit',$item->id)}}" class="btn btn-primary">Edit</a>
+              @if ($item->is_active === 1)
+              <a href="{{ route('itemsdeactivate',$item->id)}}" class="btn btn-secondary">Deactivate</a> 
+              @else
+              <a href="{{ route('itemsactivate',$item->id)}}" class="btn btn-secondary">Activate</a> 
+              @endif
+              <a href="{{ route('items.destroy', $item->id)}}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         @endforeach
@@ -55,9 +56,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td style="float: right;">{{ $items->links() }}</td>
         <td></td>
-        <td></td>
+        <td style="float: left;">{{ $items->links() }}</td>
         <td></td>
         <td></td>
         <td></td>

@@ -45,9 +45,9 @@
                             Inventory
                           </a>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">In</a>
-                            <a class="dropdown-item" href="#">Out</a>
-                            <a class="dropdown-item" href="#">Returns</a>
+                            <a class="dropdown-item" href="{{ route('suppliers.index') }}">In/Purchasing</a>
+                            <a class="dropdown-item" href="{{ route('suppliers.index') }}">Out</a>
+                            <a class="dropdown-item" href="{{ route('suppliers.index') }}">Returns</a>
                           </div>
                         </li>
                         <!-- Settings-->
@@ -56,7 +56,6 @@
                             Settings
                           </a>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Users</a>
                             <a class="dropdown-item" href="{{ route('suppliers.index') }}">Suppliers</a>
                             <a class="dropdown-item" href="{{ route('categories.index') }}">Product Categories</a>
                             <a class="dropdown-item" href="{{ route('subcategories.index') }}">Product Sub Categories</a>

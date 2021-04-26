@@ -33,7 +33,7 @@
             <td class="centered">{{$subcat_array[$item->subcat_id]}}</td>
             <td class="centered">{{$sku_array[$item->sku_id]}}</td>
             <td class="centered">{{$supp_array[$item->supp_id]}}</td>
-            <td class="centered">{{$item->qty}}</td>
+            <td class="centered">{{number_format($item->qty)}}</td>
             <td class="centered"><?php echo "₱"; ?>{{number_format($item->price,2)}}</td>
             @if ($item->is_active === 1)
             <td class="centered">Active</td>

@@ -84,7 +84,7 @@
           </div>
           <div class="form-group">
               <label for="price">Price:</label>
-              <input type="number" placeholder="₱ 00.00" class="form-control" name="price" value="{{ number_format($items->price,2) }}"/>
+              <input type="text" class="form-control" name="price" value='{{number_format($items->price, 2)}}'></input>
           </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>

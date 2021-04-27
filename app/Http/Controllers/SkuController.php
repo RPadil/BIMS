@@ -6,6 +6,7 @@ use DB;
 use App\Sku;
 use App\Subcategories;
 use App\Categories;
+use App\Parentsku;
 use Illuminate\Http\Request;
 
 class SkuController extends Controller
@@ -31,9 +32,16 @@ class SkuController extends Controller
         {
             $subcat_array[$subcategory->id] = $subcategory->subcat_name;
         }
+
+        $psku_array = array();
+        $parentskus = Parentsku::select('id','psku_name')->get();
+        foreach ($parentskus as $parentsku)
+        {
+            $psku_array[$parentsku->id] = $parentsku->psku_name;
+        }
         // dd($subcat_array);
         $sku = Sku::latest()->paginate(5);
-        return view('sku.index',compact('sku','cat_array','subcat_array'))
+        return view('sku.index',compact('sku','cat_array','subcat_array','psku_array'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -46,7 +54,8 @@ class SkuController extends Controller
     {
         //create
         $categories = Categories::select('id','cat_name','cat_id')->get();
-        return view('sku.create',compact('categories'));
+        $parentskus = Parentsku::select('id','psku_id','psku_name')->get();
+        return view('sku.create',compact('categories','parentskus'));
     }
 
     /**
@@ -61,7 +70,8 @@ class SkuController extends Controller
         'sku_name'=>'required',
         'sku_desc'=> 'required',
         'cat_name'=>'required',
-        'subcat_name'=> 'required'
+        'subcat_name'=> 'required',
+        'psku_name'=> 'required'
       ]);
 
       $sk = DB::table('skus')->max('sku_id');
@@ -71,6 +81,7 @@ class SkuController extends Controller
       $sku->sku_desc = $request->get('sku_desc');
       $sku->cat_id = $request->get('cat_name');
       $sku->subcat_id = $request->get('subcat_name');
+      $sku->psku_id = $request->get('psku_name');
       $sku->is_active = 1;
       $sku->created_at = Now();
 
@@ -101,8 +112,9 @@ class SkuController extends Controller
         $categories = Categories::select('id','cat_name','cat_id')->get();
         $sku = Sku::find($id);
         $subcategories = Subcategories::where('cat_id',$sku->cat_id)->get();
+        $parentskus = Parentsku::where('psku_id',$sku->psku_id)->get();
         // dd($subcategories);
-        return view('sku.edit', compact('sku','categories','subcategories'));
+        return view('sku.edit', compact('sku','categories','subcategories','parentskus'));
     }
 
     /**
@@ -118,7 +130,8 @@ class SkuController extends Controller
         'sku_name'=>'required',
         'sku_desc'=> 'required',
         'cat_name'=>'required',
-        'subcat_name'=> 'required'
+        'subcat_name'=> 'required',
+        'psku_name'=> 'required'
       ]);
         //updates
       $sku = Sku::find($id);
@@ -126,6 +139,7 @@ class SkuController extends Controller
       $sku->sku_desc = $request->get('sku_desc');
       $sku->cat_id = $request->get('cat_name');
       $sku->subcat_id = $request->get('subcat_name');
+      $sku->psku_id = $request->get('psku_name');
       $sku->is_active = 1;
       $sku->updated_at = Now();
 

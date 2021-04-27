@@ -54,6 +54,19 @@
                 @endforeach
               </select>
           </div>
+          <div class="form-group">
+              <label for="cat_name">Parent SKU:</label>
+              <select class="form-control" name="psku_name" id="psku_id">
+                <option value="">-- Select Parent SKU --</option>
+                @foreach ($parentskus as $value)
+                @if ($sku->psku_id === $value->psku_id)
+                <option value="{{ $value->psku_id }}" selected="selected">{{ $value->psku_name }}</option>
+                @else
+                <option value="{{ $value->psku_id }}">{{ $value->psku_name }}</option>
+                @endif
+                @endforeach
+              </select>
+          </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>
           <a href="{{ url()->previous() }}" class="btn btn-secondary"> Back </a>

@@ -16,6 +16,7 @@
           <th class="centered">SKU Description</th>
           <th class="centered">Category</th>
           <th class="centered">Sub Category</th>
+          <th class="centered">Parent SKU</th>
           <th class="centered">Active/Inactive</th>
           <th class="centered" colspan="3">Action</th>
         </tr>
@@ -28,6 +29,7 @@
             @if ($skus->cat_id)
             <td class="centered">{{$cat_array[$skus->cat_id]}}</td>
             <td class="centered">{{$subcat_array[$skus->subcat_id]}}</td>
+            <td class="centered">{{$psku_array[$skus->psku_id]}}</td>
             @endif
             @if ($skus->is_active === 1)
             <td class="centered">Active</td>

@@ -5,7 +5,7 @@
 <!-- create -->
 <div class="card">
   <div class="card-header">
-    <h3>New SKU</h3>
+    <h3>New Parent SKU</h3>
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -39,6 +39,15 @@
           <div class="form-group">
               <label for="cat_name">Sub Category:</label>
               <select class="form-control" name="subcat_name" id="subcat_id">
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="cat_name">Parent SKU:</label>
+              <select class="form-control" name="psku_name" id="psku_id">
+                <option value="">-- Select Parent SKU --</option>
+                @foreach ($parentskus as $value)
+                <option value="{{ $value->psku_id }}">{{ $value->psku_name }}</option>
+                @endforeach
               </select>
           </div>
           <div class="form-group" style="float: center;">

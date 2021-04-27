@@ -64,6 +64,21 @@ Route::get('subcategories_activate/{id}', [
     'as'   => 'subcategoriesactivate'
   ]);
 
+//Parent SKUs
+Route::resource('parentsku', 'ParentskuController');
+Route::get('parentsku.destroy/{id}', [
+    'uses' => 'ParentskuController@destroy',
+    'as'   => 'parentsku.destroy'
+  ]);
+Route::get('parentsku_deactivate/{id}', [
+    'uses' => 'ParentskuController@parentskudeactivate',
+    'as'   => 'parentskudeactivate'
+  ]);
+Route::get('categories_activate/{id}', [
+    'uses' => 'ParentskuController@parentskuactivate',
+    'as'   => 'parentskuactivate'
+  ]);
+
 //SKUs
 Route::resource('sku', 'SkuController');
 Route::get('skus.destroy/{id}', [

@@ -14,6 +14,8 @@
         <tr>
           <th class="centered">Product Category Code</th>
           <th class="centered">Product Category Name</th>
+          <th class="centered">Category</th>
+          <th class="centered">Sub Category</th>
           <th class="centered">Active/Inactive</th>
           <th class="centered" colspan="3">Action</th>
         </tr>
@@ -23,6 +25,10 @@
         <tr>
             <td class="centered">{{$parentskus->psku_name}}</td>
             <td class="centered">{{$parentskus->psku_desc}}</td>
+            @if ($parentskus->cat_id)
+            <td class="centered">{{$cat_array[$parentskus->cat_id]}}</td>
+            <td class="centered">{{$subcat_array[$parentskus->subcat_id]}}</td>
+            @endif
             @if ($parentskus->is_active === 1)
             <td class="centered">Active</td>
             @else
@@ -42,7 +48,9 @@
         <tr>
         <td></td>
         <td></td>
+        <td></td>
         <td style="float: left;">{{ $parentsku->links() }}</td>
+        <td></td>
         <td></td>
         </tr>
     </tbody>

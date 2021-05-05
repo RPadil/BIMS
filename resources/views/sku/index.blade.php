@@ -55,6 +55,7 @@
         <td style="float: right;">{{ $sku->links() }}</td>
         <td></td>
         <td></td>
+        <td></td>
         </tr>
     </tbody>
   </table>

@@ -74,7 +74,7 @@ Route::get('parentsku_deactivate/{id}', [
     'uses' => 'ParentskuController@parentskudeactivate',
     'as'   => 'parentskudeactivate'
   ]);
-Route::get('categories_activate/{id}', [
+Route::get('parentsku_activate/{id}', [
     'uses' => 'ParentskuController@parentskuactivate',
     'as'   => 'parentskuactivate'
   ]);

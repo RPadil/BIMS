@@ -28,6 +28,32 @@
               <label for="psku_desc">Parent SKU Description:</label>
               <input type="text" class="form-control" name="psku_desc" value="{{ $psku->psku_desc }}">
           </div>
+          <div class="form-group">
+              <label for="cat_name">Category:</label>
+              <select class="form-control" name="cat_name" id="cat_id">
+                <option value="">-- Select Category --</option>
+                @foreach ($categories as $value)
+                @if ($psku->cat_id === $value->cat_id)
+                <option value="{{ $value->cat_id }}" selected="selected">{{ $value->cat_name }}</option>
+                @else
+                <option value="{{ $value->cat_id }}">{{ $value->cat_name }}</option>
+                @endif
+                @endforeach
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="cat_name">Sub Category:</label>
+              <select class="form-control" name="subcat_name" id="subcat_id">
+                <option value="">-- Select Sub Category --</option>
+                @foreach ($subcategories as $value)
+                @if ($psku->subcat_id === $value->subcat_id)
+                <option value="{{ $value->subcat_id }}" selected="selected">{{ $value->subcat_name }}</option>
+                @else
+                <option value="{{ $value->subcat_id }}">{{ $value->subcat_name }}</option>
+                @endif
+                @endforeach
+              </select>
+          </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>
           <a href="{{ url()->previous() }}" class="btn btn-secondary"> Back </a>

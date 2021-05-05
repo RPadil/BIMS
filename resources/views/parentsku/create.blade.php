@@ -27,6 +27,20 @@
               <label for="psku_desc">Parent SKU Description:</label>
               <input type="text" class="form-control" name="psku_desc"/>
           </div>
+          <div class="form-group">
+              <label for="cat_name">Category:</label>
+              <select class="form-control" name="cat_name" id="cat_id">
+                <option value="">-- Select Category --</option>
+                @foreach ($categories as $value)
+                <option value="{{ $value->cat_id }}">{{ $value->cat_name }}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="subcat_name">Sub Category:</label>
+              <select class="form-control" name="subcat_name" id="subcat_id">
+              </select>
+          </div>
           <div class="form-group" style="float: center;">
           <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>
           <a href="{{ url()->previous() }}" class="btn btn-secondary"> Back </a>

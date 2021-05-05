@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Parentsku;
 use App\Sku;
 use App\Item;
 use App\Subcategories;
